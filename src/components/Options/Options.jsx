@@ -1,12 +1,12 @@
-
-function Options({updateFeedback, totalFeedback}) {
+import css from './Options.module.css'
+function Options({updateFeedback, totalFeedback, setFeedbackTypes}) {
   return (
-        <>
-          <button onClick={() => { updateFeedback('good') }}>Good</button>
-          <button onClick={() => { updateFeedback('neutral') }}>Neutral</button>
-          <button onClick={() => { updateFeedback('bad') }}>Bad</button>
-          {totalFeedback > 0 && (<button>Reset</button>)}
-      </>
+        <ul className={css.feedback_list}>
+        <li><button onClick={() => { updateFeedback('good') }}>Good</button></li>  
+        <li><button onClick={() => { updateFeedback('neutral') }}>Neutral</button></li> 
+        <li><button onClick={() => { updateFeedback('bad') }}>Bad</button></li>  
+        {totalFeedback > 0 && (<li><button onClick={() => setFeedbackTypes({good: 0,neutral: 0,bad: 0})}>Reset</button></li> )}
+      </ul>
   )
 }
 
