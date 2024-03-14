@@ -1,4 +1,4 @@
-.feedback_list{
+.button_list{
     display: flex;
     flex-direction: row;
     gap:10px;
@@ -10,6 +10,7 @@ button {
     border-radius: 8px;
     padding: 0.6em 1.2em;
     font-size: 1em;
+    border:1px solid #49ff18;
     font-weight: 500;
     font-family: inherit;
     background-color: #e8dcdc;
@@ -20,11 +21,9 @@ button {
 }
 
 button:hover {
-    border-color: #49ff18;
     background-color: #f2eaea;
     color: #000000;
     transform: scale(1.07);
-    
 }
 
 button:focus,
