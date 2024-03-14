@@ -11,26 +11,27 @@ function App() {
   if (savedFeedback !== null) {
     return JSON.parse(savedFeedback);
   }
-  return {good: 0,neutral: 0,bad: 0};
-});
+    return { good: 0, neutral: 0, bad: 0 };
+  });
 
   const updateFeedback = feedbackType => {
-setFeedbackTypes({
-			...feedbackTypes,
-  [feedbackType]: feedbackTypes[feedbackType] + 1
-});
+    setFeedbackTypes({
+      ...feedbackTypes,
+      [feedbackType]: feedbackTypes[feedbackType] + 1
+    });
   }
   
   useEffect(() => {
-     window.localStorage.setItem("saved-feedback", JSON.stringify(feedbackTypes));
+    window.localStorage.setItem("saved-feedback", JSON.stringify(feedbackTypes));
   }, [feedbackTypes]);
   const totalFeedback = feedbackTypes.good + feedbackTypes.neutral + feedbackTypes.bad;
+  const positiveFeedback = Math.round(((feedbackTypes.good + feedbackTypes.neutral) / totalFeedback) * 100);
 
   return (
     <>
       <Description />
       <Options updateFeedback={updateFeedback} totalFeedback={totalFeedback} setFeedbackTypes={setFeedbackTypes} />
-       {totalFeedback === 0 ? <Notification />:<Feedback good={feedbackTypes.good} bad={feedbackTypes.bad} neutral={feedbackTypes.neutral} totalFeedback={totalFeedback} />} 
+      {totalFeedback > 0 ? <Feedback good={feedbackTypes.good} bad={feedbackTypes.bad} neutral={feedbackTypes.neutral} totalFeedback={totalFeedback} positive={positiveFeedback} />:<Notification />} 
     </>
   )
 }
